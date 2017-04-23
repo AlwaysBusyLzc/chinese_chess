@@ -49,7 +49,17 @@ public class board : MonoBehaviour {
 		{ChessType.black_car, ChessType.black_horse, ChessType.black_elephant, ChessType.black_shi, ChessType.black_general, ChessType.black_shi, ChessType.black_elephant, ChessType.black_horse, ChessType.black_car},
 	};
 
+    delegate bool chessRule(ChessType[,] boardData, int oldH, int oldW, int newH, int newW);
     private Dictionary<string, GameObject> _typeToChessObj = new Dictionary<string, GameObject>();
+    private Dictionary<ChessType, chessRule> _typeToRule = new Dictionary<ChessType, chessRule>() {
+        {ChessType.red_car, horseRule.canGo}, {ChessType.black_car, horseRule.canGo},
+        {ChessType.red_horse, horseRule.canGo}, {ChessType.black_horse, horseRule.canGo},
+        {ChessType.red_elephant, horseRule.canGo}, {ChessType.black_elephant, horseRule.canGo},
+        {ChessType.red_shi, horseRule.canGo}, {ChessType.black_shi, horseRule.canGo},
+        {ChessType.red_general, horseRule.canGo}, {ChessType.black_general, horseRule.canGo},
+        {ChessType.red_gun, horseRule.canGo}, {ChessType.black_gun, horseRule.canGo},
+        {ChessType.red_solider, horseRule.canGo}, {ChessType.black_solider, horseRule.canGo},
+    };
 
     // 轮到哪一方下子
     public GroupType CurrentGroup { get; set; }
@@ -163,6 +173,10 @@ public class board : MonoBehaviour {
 
             // 落到己方的子上了
             if (selectChessType != ChessType.empty && getGroupType(selectChessType) == PlayerGroup)
+                return;
+
+            // 判断棋子行走规则
+            if (_typeToRule[chessScript.type](_dataArr, chessScript.Pos.hIndex, chessScript.Pos.wIndex, posH, posW) == false)
                 return;
 
             _dataArr[chessScript.Pos.hIndex, chessScript.Pos.wIndex] = ChessType.empty;
