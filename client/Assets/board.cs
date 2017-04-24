@@ -72,7 +72,7 @@ public class board : MonoBehaviour {
 
 
     // 根据旗子类型获取阵营类型
-    public GroupType getGroupType(ChessType chessType)
+    public static GroupType getGroupType(ChessType chessType)
     {
         if ((int)chessType > 10)
             return GroupType.black;
