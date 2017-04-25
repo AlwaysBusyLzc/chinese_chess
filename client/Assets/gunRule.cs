@@ -29,7 +29,7 @@ public class gunRule : MonoBehaviour
 
             return true;
         }
-        else if (oldW == oldW)
+        else if (oldW == newW)
         {
             int bigger = oldH;
             int littler = newH;

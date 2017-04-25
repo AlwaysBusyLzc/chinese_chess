@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class generalRule : MonoBehaviour
 {
+    public static GroupType getGroupType(ChessType chessType)
+    {
+        if ((int)chessType > 10)
+            return GroupType.black;
+
+        return GroupType.red;
+    }
 
     public static bool canGo(ChessType[,] boardData, int oldH, int oldW, int newH, int newW)
     {
@@ -24,14 +31,14 @@ public class generalRule : MonoBehaviour
             }
             for (int i = litterH + 1; i < biggerH; i++)
             {
-                if (boardData[i, oldW] != ChessType.empyt)
+                if (boardData[i, oldW] != ChessType.empty)
                     return false;
             }
 
             return true;
         }
 
-        if (board::getGroupType(oldType) == GroupType.red)
+        if (getGroupType(oldType) == GroupType.red)
         {
             if (newH > 2)
                 return false;

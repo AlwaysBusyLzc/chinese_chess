@@ -52,13 +52,13 @@ public class board : MonoBehaviour {
     delegate bool chessRule(ChessType[,] boardData, int oldH, int oldW, int newH, int newW);
     private Dictionary<string, GameObject> _typeToChessObj = new Dictionary<string, GameObject>();
     private Dictionary<ChessType, chessRule> _typeToRule = new Dictionary<ChessType, chessRule>() {
-        {ChessType.red_car, horseRule.canGo}, {ChessType.black_car, horseRule.canGo},
+        {ChessType.red_car, carRule.canGo}, {ChessType.black_car, carRule.canGo},
         {ChessType.red_horse, horseRule.canGo}, {ChessType.black_horse, horseRule.canGo},
-        {ChessType.red_elephant, horseRule.canGo}, {ChessType.black_elephant, horseRule.canGo},
-        {ChessType.red_shi, horseRule.canGo}, {ChessType.black_shi, horseRule.canGo},
-        {ChessType.red_general, horseRule.canGo}, {ChessType.black_general, horseRule.canGo},
-        {ChessType.red_gun, horseRule.canGo}, {ChessType.black_gun, horseRule.canGo},
-        {ChessType.red_solider, horseRule.canGo}, {ChessType.black_solider, horseRule.canGo},
+        {ChessType.red_elephant, elephantRule.canGo}, {ChessType.black_elephant, elephantRule.canGo},
+        {ChessType.red_shi, shiRule.canGo}, {ChessType.black_shi, shiRule.canGo},
+        {ChessType.red_general, generalRule.canGo}, {ChessType.black_general, generalRule.canGo},
+        {ChessType.red_gun, gunRule.canGo}, {ChessType.black_gun, gunRule.canGo},
+        {ChessType.red_solider, soliderRule.canGo}, {ChessType.black_solider, soliderRule.canGo},
     };
 
     // 轮到哪一方下子
@@ -72,7 +72,7 @@ public class board : MonoBehaviour {
 
 
     // 根据旗子类型获取阵营类型
-    public static GroupType getGroupType(ChessType chessType)
+    public GroupType getGroupType(ChessType chessType)
     {
         if ((int)chessType > 10)
             return GroupType.black;

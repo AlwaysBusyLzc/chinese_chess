@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class shiRule : MonoBehaviour
 {
+    public static GroupType getGroupType(ChessType chessType)
+    {
+        if ((int)chessType > 10)
+            return GroupType.black;
+
+        return GroupType.red;
+    }
 
     public static bool canGo(ChessType[,] boardData, int oldH, int oldW, int newH, int newW)
     {
@@ -11,7 +18,7 @@ public class shiRule : MonoBehaviour
             return false;
 
         ChessType oldType = boardData[oldH, oldW];
-        if (board::getGroupType(oldType) == GroupType.red)
+        if (getGroupType(oldType) == GroupType.red)
         {
             if (newH > 2)
                 return false;
