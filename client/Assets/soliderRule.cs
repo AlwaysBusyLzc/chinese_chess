@@ -9,13 +9,32 @@ public class soliderRule : MonoBehaviour
         ChessType oldType = boardData[oldH, oldW];
         if (board::getGroupType(oldType) == GroupType.red)
         {
-            if (newH > 2)
+            if (newH < oldH)
                 return false;
+
+            if (oldH > 4)
+            {
+                if ()
+            }
+            else
+            {
+                if (newH - oldH == 1 && newW == oldW)
+                    return true;
+            }  
         }
         else
         {
-            if (newH < 7)
+            if (newH > oldH)
                 return false;
+
+            if (oldH < 5)
+            {
+            }
+            else
+            {
+            }
         }
+
+        return false;
     }
 }
